@@ -1,10 +1,3 @@
-// Wedding videos — hosted on Cloudinary, with Lighthouse-friendly delivery:
-// - thumbnail: small auto-cropped JPG/WebP poster frame, served before any video loads
-// - src: capped to 720p @ eco quality with dpr_auto, served as the lightest format the browser supports
-// - srcMobile: an even lighter 480p variant for small/slow connections
-// Use <video preload="none" poster={thumbnail}> and only swap in `src` (or `srcMobile`
-// on small screens) once the user actually presses play — never autoplay/preload these.
-
 const videos = [
   {
     id: 1,
@@ -72,6 +65,22 @@ const videos = [
   },
   {
     id: 9,
+    title: 'Tilak Ceremony 9',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782821459/video_2_njx4yb.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782821459/video_2_njx4yb.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782821459/video_2_njx4yb.mp4',
+    category: 'Tilak',
+  },
+  {
+    id: 10,
+    title: 'Tilak Ceremony 10',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782821830/video_3_n6uriv.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782821830/video_3_n6uriv.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782821830/video_3_n6uriv.mp4',
+    category: 'Tilak',
+  },
+  {
+    id: 11,
     title: 'Satyanarayan Puja 1',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819438/video_10_c6p6gw.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819438/video_10_c6p6gw.mp4',
@@ -79,7 +88,7 @@ const videos = [
     category: 'Puja',
   },
   {
-    id: 10,
+    id: 12,
     title: 'Haldi Ceremony 1',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819446/video_21_jstw14.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819446/video_21_jstw14.mp4',
@@ -87,7 +96,7 @@ const videos = [
     category: 'Haldi',
   },
   {
-    id: 11,
+    id: 13,
     title: 'Haldi Ceremony 2',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819443/video_26_kcxxxd.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819443/video_26_kcxxxd.mp4',
@@ -95,7 +104,7 @@ const videos = [
     category: 'Haldi',
   },
   {
-    id: 12,
+    id: 14,
     title: 'Haldi Ceremony 3',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819441/video_14_w5ye6r.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819441/video_14_w5ye6r.mp4',
@@ -103,7 +112,7 @@ const videos = [
     category: 'Haldi',
   },
   {
-    id: 13,
+    id: 15,
     title: 'Wedding Moments 1',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819442/video_9_ihv7ie.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819442/video_9_ihv7ie.mp4',
@@ -111,7 +120,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 14,
+    id: 16,
     title: 'Wedding Moments 2',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819438/video_22_iau9cq.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819438/video_22_iau9cq.mp4',
@@ -119,7 +128,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 15,
+    id: 17,
     title: 'Wedding Moments 3',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819449/video_20_n2hayg.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819449/video_20_n2hayg.mp4',
@@ -127,7 +136,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 16,
+    id: 18,
     title: 'Wedding Moments 4',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819442/video_8_vnicza.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819442/video_8_vnicza.mp4',
@@ -135,7 +144,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 17,
+    id: 19,
     title: 'Wedding Moments 5',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819436/video_11_qwplfo.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819436/video_11_qwplfo.mp4',
@@ -143,7 +152,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 18,
+    id: 20,
     title: 'Wedding Moments 6',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819436/video_7_malug5.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819436/video_7_malug5.mp4',
@@ -151,7 +160,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 19,
+    id: 21,
     title: 'Wedding Moments 7',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819436/video_19_zg0maq.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819436/video_19_zg0maq.mp4',
@@ -159,7 +168,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 20,
+    id: 22,
     title: 'Wedding Moments 8',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819435/video_18_ro8ahf.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819435/video_18_ro8ahf.mp4',
@@ -167,7 +176,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 21,
+    id: 23,
     title: 'Wedding Moments 9',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819435/video_6_b94qga.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819435/video_6_b94qga.mp4',
@@ -175,7 +184,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 22,
+    id: 24,
     title: 'Wedding Moments 10',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819434/video_4_jy8pqb.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819434/video_4_jy8pqb.mp4',
@@ -183,7 +192,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 23,
+    id: 25,
     title: 'Wedding Moments 11',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819434/video_17_s5q6bz.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819434/video_17_s5q6bz.mp4',
@@ -191,7 +200,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 24,
+    id: 26,
     title: 'Wedding Moments 12',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819433/video_5_v2h5ck.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819433/video_5_v2h5ck.mp4',
@@ -199,7 +208,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 25,
+    id: 27,
     title: 'Wedding Moments 13',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819434/video_3_khpvg8.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819434/video_3_khpvg8.mp4',
@@ -207,7 +216,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 26,
+    id: 28,
     title: 'Wedding Moments 14',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819432/video_2_q3vlmr.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819432/video_2_q3vlmr.mp4',
@@ -215,7 +224,7 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 27,
+    id: 29,
     title: 'Wedding Moments 15',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819432/video_1_mubjta.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819432/video_1_mubjta.mp4',
@@ -223,11 +232,19 @@ const videos = [
     category: 'Wedding',
   },
   {
-    id: 28,
+    id: 30,
     title: 'Wedding Moments 16',
     thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782819432/video_15_kbblaq.jpg',
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782819432/video_15_kbblaq.mp4',
     srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782819432/video_15_kbblaq.mp4',
+    category: 'Wedding',
+  },
+  {
+    id: 31,
+    title: 'Wedding Moments 17',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782821670/video_2_phpmcv.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782821670/video_2_phpmcv.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782821670/video_2_phpmcv.mp4',
     category: 'Wedding',
   },
 ]

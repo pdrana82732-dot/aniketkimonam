@@ -186,7 +186,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.6, duration: 0.7 }}
         >
-          <a href="/events" className="hero__cta-btn">
+          <a href="/celebrations" className="hero__cta-btn">
             View Celebrations
           </a>
         </motion.div>

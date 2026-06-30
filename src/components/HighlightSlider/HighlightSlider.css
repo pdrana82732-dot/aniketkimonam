@@ -1,0 +1,216 @@
+.highlight-slider-wrap {
+    position: relative;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    max-width: 820px;
+}
+
+.highlight-slider {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(2, 8, 24, 0.18);
+    aspect-ratio: 16 / 9;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 16px 48px rgba(2, 8, 24, 0.18), 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+
+    50% {
+        box-shadow: 0 16px 48px rgba(2, 8, 24, 0.18), 0 0 24px 2px rgba(212, 175, 55, 0.35);
+    }
+}
+
+/* Decorative gold corner accents */
+.highlight-slider::before,
+.highlight-slider::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--gold);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.highlight-slider::before {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.highlight-slider::after {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+
+.highlight-slider__slide {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.highlight-slider__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+}
+
+/* Sheen sweep overlay used during slide enter */
+.highlight-slider__sheen {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.25) 50%,
+            transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Arrows */
+.highlight-slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--gold);
+    font-size: 1.6rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    line-height: 1;
+    padding: 0;
+}
+
+.highlight-slider__arrow:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--gold);
+}
+
+.highlight-slider__arrow--left {
+    left: 12px;
+}
+
+.highlight-slider__arrow--right {
+    right: 12px;
+}
+
+/* Dots */
+.highlight-slider__dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+    z-index: 4;
+}
+
+.highlight-slider__dot {
+    position: relative;
+    overflow: hidden;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.highlight-slider__dot-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.highlight-slider__dot--active {
+    background: var(--gold);
+    width: 18px;
+    border-radius: 4px;
+}
+
+.highlight-slider__dot--active .highlight-slider__dot-progress {
+    background: #fff;
+}
+
+/* ── Tablet ── */
+@media (max-width: 768px) {
+    .highlight-slider-wrap {
+        max-width: 100%;
+        margin: 0 auto 32px;
+    }
+
+    .highlight-slider {
+        aspect-ratio: 16 / 10;
+        border-radius: 8px;
+    }
+
+    .highlight-slider__arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 1.3rem;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+    .highlight-slider {
+        aspect-ratio: 4 / 3;
+        border-radius: 6px;
+    }
+
+    .highlight-slider::before,
+    .highlight-slider::after {
+        width: 14px;
+        height: 14px;
+    }
+
+    .highlight-slider__arrow {
+        width: 26px;
+        height: 26px;
+        font-size: 1.1rem;
+        left: 8px;
+    }
+
+    .highlight-slider__arrow--right {
+        right: 8px;
+    }
+
+    .highlight-slider__dots {
+        bottom: 10px;
+        gap: 5px;
+    }
+
+    .highlight-slider__dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .highlight-slider__dot--active {
+        width: 14px;
+    }
+}

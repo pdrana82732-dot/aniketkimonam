@@ -1,0 +1,126 @@
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.92);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.photo-modal__content {
+  position: relative;
+  max-width: 920px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-modal__image {
+  max-height: 78vh;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.photo-modal__close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  color: var(--ivory);
+  font-size: 1.6rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-modal__close:hover {
+  color: var(--gold);
+}
+
+.photo-modal__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ivory);
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.photo-modal__nav:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.photo-modal__nav--prev {
+  left: -10px;
+}
+
+.photo-modal__nav--next {
+  right: -10px;
+}
+
+.photo-modal__footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--ivory);
+}
+
+.photo-modal__caption {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.photo-modal__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.photo-modal__action-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ivory);
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.photo-modal__action-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+@media (max-width: 700px) {
+  .photo-modal__nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+  .photo-modal__nav--prev {
+    left: 4px;
+  }
+  .photo-modal__nav--next {
+    right: 4px;
+  }
+  .photo-modal__close {
+    top: -42px;
+  }
+}

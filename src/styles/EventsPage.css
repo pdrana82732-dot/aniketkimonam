@@ -1,0 +1,201 @@
+/* ===========================================================
+   Event Card
+=========================================================== */
+
+.event-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.4s var(--ease);
+}
+
+.event-card:hover {
+    box-shadow: 0 24px 60px rgba(2, 8, 24, 0.18);
+}
+
+/* ---- Image ---- */
+.event-card__image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.event-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease);
+}
+
+.event-card:hover .event-card__image {
+    transform: scale(1.06);
+}
+
+.event-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(2, 8, 24, 0) 50%, rgba(2, 8, 24, 0.55) 100%);
+}
+
+/* ---- Date badge ---- */
+.event-card__date {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(2, 8, 24, 0.55);
+    backdrop-filter: blur(4px);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    z-index: 2;
+}
+
+/* ---- Body ---- */
+.event-card__body {
+    padding: 26px 28px 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-card__title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    position: relative;
+    display: inline-block;
+}
+
+/* Small gold accent line under the title */
+.event-card__title::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+    margin-top: 8px;
+    transition: width 0.4s var(--ease);
+}
+
+.event-card:hover .event-card__title::after {
+    width: 60px;
+}
+
+.event-card__location {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-card__location::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+}
+
+.event-card__desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    margin-top: 14px;
+    font-style: italic;
+    flex: 1;
+}
+
+
+/* Floating decorative side ornament */
+.events-side-deco {
+    position: fixed;
+    top: 0;
+    right: 18px;
+    height: 100vh;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Thin glowing vine line running the full height behind the ornaments */
+.events-side-deco__vine {
+    position: absolute;
+    top: 6%;
+    bottom: 6%;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(212, 175, 55, 0.35) 15%,
+            rgba(212, 175, 55, 0.35) 85%,
+            transparent);
+}
+
+.events-side-deco__item {
+    position: relative;
+    display: inline-block;
+    color: var(--gold, #D4AF37);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 18px rgba(212, 175, 55, 0.25);
+}
+
+.events-side-deco__item--ring {
+    font-size: 1.6rem;
+}
+
+.events-side-deco__item--petal {
+    font-size: 1.9rem;
+    color: #e8c4cf;
+    text-shadow: 0 0 10px rgba(232, 196, 207, 0.55), 0 0 18px rgba(232, 196, 207, 0.25);
+}
+
+.events-side-deco__item--spark {
+    font-size: 1.3rem;
+}
+
+.events-side-deco__item--small {
+    font-size: 1.1rem;
+}
+
+/* Hide on smaller screens so it doesn't overlap content */
+@media (max-width: 1024px) {
+    .events-side-deco {
+        display: none;
+    }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+    .event-card__body {
+        padding: 22px 22px 26px;
+    }
+
+    .event-card__title {
+        font-size: 1.4rem;
+    }
+}

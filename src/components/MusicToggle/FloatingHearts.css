@@ -1,0 +1,14 @@
+.floating-hearts {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-hearts__item {
+  position: absolute;
+  bottom: 0;
+  color: var(--gold);
+  opacity: 0.5;
+}

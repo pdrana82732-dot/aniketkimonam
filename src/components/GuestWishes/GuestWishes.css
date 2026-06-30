@@ -1,0 +1,49 @@
+.guest-wishes {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.guest-wishes__track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+}
+
+.wish-card {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 28px 26px;
+  border: 1px solid var(--line);
+  box-shadow: var(--card-shadow);
+}
+
+.wish-card__icon {
+  color: var(--gold);
+  font-size: 1.3rem;
+}
+
+.wish-card__message {
+  margin-top: 14px;
+  font-size: 0.94rem;
+  color: var(--text-soft);
+  line-height: 1.7;
+  font-style: italic;
+  min-height: 95px;
+}
+
+.wish-card__name {
+  display: block;
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .wish-card {
+    width: 260px;
+  }
+}

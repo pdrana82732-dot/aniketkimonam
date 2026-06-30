@@ -1,0 +1,242 @@
+.page {
+  width: 100%;
+}
+
+.section--alt {
+  background: var(--bg-alt);
+}
+
+.page__section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.page__events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.page__cta {
+  text-align: center;
+  background: var(--black);
+  color: var(--ivory);
+}
+
+.page__cta .section-title {
+  color: var(--ivory);
+}
+
+.page__cta-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page__cta-actions {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.page__header {
+  padding: 160px 0 60px;
+  text-align: center;
+}
+
+.page__header .section-sub {
+  margin: 18px auto 0;
+}
+
+/* ===========================================================
+   Themed Action Buttons (gold / navy)
+   Fixes text-disappearing-on-hover bug from global .btn —
+   text is wrapped in <span> with explicit z-index here.
+=========================================================== */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 34px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.cta-btn span {
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s var(--ease);
+}
+
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+}
+
+.cta-btn:hover::before {
+  transform: scaleX(1);
+}
+
+/* Outline style — used for "View All Events" + "Watch Videos" */
+.cta-btn--outline {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+}
+
+.cta-btn--outline::before {
+  background: var(--accent);
+}
+
+.cta-btn--outline span {
+  color: var(--accent);
+}
+
+.cta-btn--outline:hover span {
+  color: var(--black);
+}
+
+.cta-btn--outline:hover {
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+}
+
+/* Filled / primary style — used for "Explore Gallery" */
+.cta-btn--filled {
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: var(--black);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+}
+
+.cta-btn--filled span {
+  color: var(--black);
+}
+
+.cta-btn--filled::before {
+  background: linear-gradient(135deg, var(--gold-soft), #fff8dc);
+}
+
+.cta-btn--filled:hover {
+  box-shadow: 0 14px 32px rgba(212, 175, 55, 0.4);
+}
+
+/* On dark CTA section, outline buttons should read against navy bg */
+.page__cta .cta-btn--outline {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.page__cta .cta-btn--outline span {
+  color: var(--gold);
+}
+
+.page__cta .cta-btn--outline:hover span {
+  color: var(--black);
+}
+
+/* ===========================================================
+   "View All Events" — special arrow-slide + shimmer treatment
+=========================================================== */
+.cta-btn--events {
+  gap: 12px;
+  border-radius: 999px;
+  animation: eventsPulse 3.2s ease-in-out infinite;
+}
+
+.cta-btn--events .arrow-icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.4s var(--ease);
+}
+
+.cta-btn--events .arrow-icon svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.4s var(--ease);
+}
+
+.cta-btn--events:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Shimmer sweep across the button on hover */
+.cta-btn--events::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 100%);
+  transform: skewX(-20deg);
+  z-index: 1;
+  pointer-events: none;
+  transition: left 0.7s var(--ease);
+}
+
+.cta-btn--events:hover::after {
+  left: 150%;
+}
+
+.cta-btn--events:hover {
+  animation: none;
+}
+
+@keyframes eventsPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.35);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0);
+  }
+}
+
+/* ===========================================================
+   Responsive
+=========================================================== */
+@media (max-width: 900px) {
+  .page__events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .page__events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page__header {
+    padding: 130px 0 40px;
+  }
+}

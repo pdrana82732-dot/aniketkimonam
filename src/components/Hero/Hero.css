@@ -1,0 +1,589 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--ivory);
+}
+
+.hero__anniversary-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--color-gold, #c9a96e);
+  text-transform: uppercase;
+  margin-bottom: 0;
+  opacity: 0.85;
+}
+
+/* ── Media ── */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.45);
+  transition: opacity 1.5s ease;
+  z-index: 0;
+}
+
+.hero__video--active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero__video--inactive {
+  opacity: 0;
+  z-index: 0;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(10, 10, 10, 0.75) 0%,
+      rgba(10, 10, 10, 0.60) 40%,
+      rgba(10, 10, 10, 0.90) 100%);
+  z-index: 2;
+}
+
+/* ── Particles ── */
+.hero__particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Corner ornaments ── */
+.hero__ornament {
+  position: absolute;
+  z-index: 2;
+  font-size: 1rem;
+  color: var(--gold);
+  opacity: 0.55;
+  animation: ornamentPulse 3s ease-in-out infinite;
+}
+
+.hero__ornament--tl {
+  top: 28px;
+  left: 28px;
+}
+
+.hero__ornament--tr {
+  top: 28px;
+  right: 28px;
+}
+
+.hero__ornament--bl {
+  bottom: 60px;
+  left: 28px;
+}
+
+.hero__ornament--br {
+  bottom: 60px;
+  right: 28px;
+}
+
+@keyframes ornamentPulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.25);
+  }
+}
+
+/* ── Decorative lines ── */
+.hero__deco-line {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 2;
+  transform-origin: center;
+}
+
+.hero__deco-line--top {
+  top: 18px;
+}
+
+.hero__deco-line--bottom {
+  bottom: 18px;
+}
+
+/* ── Content ── */
+.hero__content {
+  padding-top: 80px;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Eyebrow ── */
+.hero__eyebrow-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.hero__eyebrow-line {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.hero__eyebrow-wrap .hero__eyebrow-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.hero__eyebrow {
+  color: var(--champagne) !important;
+  margin: 0 !important;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* ── Title ── */
+.hero__title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  font-weight: 600;
+  color: var(--ivory);
+  line-height: 1;
+  margin: 0;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+}
+
+.hero__name {
+  display: inline-block;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
+
+.hero__amp-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__amp {
+  font-style: italic;
+  color: var(--gold);
+  font-size: clamp(1.8rem, 6vw, 3.8rem);
+  text-shadow: 0 0 24px rgba(212, 175, 55, 0.5);
+  animation: ampGlow 3s ease-in-out infinite;
+}
+
+@keyframes ampGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  }
+
+  50% {
+    text-shadow: 0 0 40px rgba(212, 175, 55, 0.85), 0 0 80px rgba(212, 175, 55, 0.3);
+  }
+}
+
+/* ── Divider ── */
+.hero__divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0 14px;
+}
+
+.hero__divider-line {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7));
+}
+
+.hero__divider:last-child .hero__divider-line {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.7), transparent);
+}
+
+.hero__divider-icon {
+  color: var(--gold);
+  font-size: 0.85rem;
+  animation: heartBeat 1.6s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.25);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.15);
+  }
+
+  56% {
+    transform: scale(1);
+  }
+}
+
+/* ── Date ── */
+.hero__date {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--champagne);
+  font-weight: 300;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+/* ── Countdown wrap ── */
+.hero__countdown-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+/* ── Countdown ── */
+.hero__countdown {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero__count-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  padding: 14px 10px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.hero__count-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+.hero__count-box:hover {
+  border-color: rgba(212, 175, 55, 0.7);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.hero__count-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold);
+  font-weight: 700;
+  display: block;
+  line-height: 1;
+}
+
+.hero__count-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  margin-top: 6px;
+}
+
+/* ── Married message ── */
+.hero__married {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.hero__married-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  color: var(--gold);
+}
+
+.hero__married-sub {
+  font-size: 0.9rem;
+  color: var(--champagne);
+  letter-spacing: 0.1em;
+}
+
+/* ── CTA Button ── */
+.hero__cta {
+  margin-top: 32px;
+}
+
+.hero__cta-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid var(--gold);
+  color: var(--ivory);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 2px;
+  background: transparent;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s ease, background 0.4s ease;
+}
+
+.hero__cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.hero__cta-btn:hover {
+  color: var(--black);
+}
+
+.hero__cta-btn:hover::before {
+  transform: scaleX(1);
+}
+
+/* ── Scroll indicator ── */
+.hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--champagne);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.hero__scroll svg {
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+
+/* ── Tablet (max 768px) ── */
+@media (max-width: 768px) {
+  .hero__content {
+    padding-top: 70px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.4rem, 11vw, 4rem);
+    gap: 10px;
+  }
+
+  .hero__amp {
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
+  }
+
+  .hero__eyebrow-line {
+    width: 32px;
+  }
+
+  .hero__divider-line {
+    width: 48px;
+  }
+
+  .hero__countdown {
+    gap: 10px;
+  }
+
+  .hero__count-box {
+    min-width: 64px;
+    padding: 12px 8px;
+  }
+
+  .hero__count-num {
+    font-size: 1.6rem;
+  }
+}
+
+/* ── Mobile (max 480px) ── */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero__content {
+    padding-top: 60px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 13vw, 3rem);
+    gap: 8px;
+  }
+
+  .hero__amp {
+    font-size: clamp(1.3rem, 8vw, 2rem);
+  }
+
+  .hero__eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero__eyebrow-line {
+    width: 24px;
+  }
+
+  .hero__date {
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+  }
+
+  .hero__anniversary-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero__countdown {
+    gap: 8px;
+  }
+
+  .hero__count-box {
+    min-width: 56px;
+    padding: 10px 6px;
+  }
+
+  .hero__count-num {
+    font-size: 1.4rem;
+  }
+
+  .hero__count-label {
+    font-size: 0.55rem;
+  }
+
+  .hero__cta {
+    margin-top: 24px;
+  }
+
+  .hero__cta-btn {
+    padding: 11px 24px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero__ornament--tl,
+  .hero__ornament--tr {
+    top: 16px;
+  }
+
+  .hero__ornament--tl,
+  .hero__ornament--bl {
+    left: 14px;
+  }
+
+  .hero__ornament--tr,
+  .hero__ornament--br {
+    right: 14px;
+  }
+
+  .hero__ornament--bl,
+  .hero__ornament--br {
+    bottom: 70px;
+  }
+
+  .hero__deco-line {
+    left: 5%;
+    width: 90%;
+  }
+
+  .hero__divider {
+    margin: 12px 0 10px;
+  }
+
+  .hero__divider-line {
+    width: 36px;
+  }
+}
+
+/* Force all hero content always visible —
+   framer-motion handles hero animations, not IntersectionObserver */
+.hero .eyebrow,
+.hero .section-title,
+.hero .section-sub,
+.hero .fade-up,
+.hero .fade-down,
+.hero .fade-in,
+.hero .fade-left,
+.hero .fade-right,
+.hero .zoom-in,
+.hero .flip-up {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}

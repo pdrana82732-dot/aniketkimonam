@@ -1,0 +1,271 @@
+.gallery {
+  width: 100%;
+}
+
+.gallery--fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: var(--bg);
+  overflow-y: auto;
+  padding: 90px 24px 40px;
+}
+
+.gallery__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+/* Scroll wrapper — allows single-line horizontal scroll on mobile */
+.gallery__filters-scroll {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.gallery__filters-scroll::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+.gallery__filters {
+  display: flex;
+  gap: 6px;
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+.gallery__filter-btn {
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  color: var(--text-soft);
+  transition: all 0.3s var(--ease);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.gallery__filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.gallery__filter-btn--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000000 !important;
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
+}
+
+.gallery__filter-btn:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.gallery__right-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.gallery__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--text-soft);
+  transition: border-color 0.3s var(--ease);
+}
+
+.gallery__search:hover,
+.gallery__search:focus-within {
+  border-color: var(--gold);
+}
+
+.gallery__search input {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+  width: 150px;
+}
+
+.gallery__fullscreen-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-soft);
+  transition: all 0.3s var(--ease);
+  flex-shrink: 0;
+}
+
+.gallery__fullscreen-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: rotate(8deg) scale(1.08);
+}
+
+.gallery__masonry {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 16px;
+}
+
+.gallery__item {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-alt);
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  box-shadow: 0 6px 20px rgba(2, 8, 24, 0.08);
+  transition: box-shadow 0.4s var(--ease);
+}
+
+.gallery__item:hover {
+  box-shadow: 0 18px 40px rgba(2, 8, 24, 0.18);
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+
+.gallery__item:hover .gallery__img {
+  transform: scale(1.1);
+}
+
+/* Overlay — z-index 2, fades in on hover */
+.gallery__item-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 45%, rgba(2, 8, 24, 0.82) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.gallery__item:hover .gallery__item-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Badge — z-index 3, always visible above overlay */
+.gallery__item-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(2, 8, 24, 0.55);
+  backdrop-filter: blur(4px);
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.gallery__item-ritual {
+  color: var(--gold-soft);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gallery__item-subtitle {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 4px;
+  font-style: italic;
+  letter-spacing: 0.03em;
+}
+
+.gallery__item-caption {
+  color: var(--ivory);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.gallery__sentinel {
+  height: 10px;
+}
+
+.gallery__empty {
+  text-align: center;
+  color: var(--text-soft);
+  padding: 60px 0;
+  font-style: italic;
+}
+
+@media (max-width: 1024px) {
+  .gallery__masonry {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery__controls {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .gallery__filters {
+    gap: 5px;
+  }
+
+  .gallery__filter-btn {
+    padding: 5px 8px;
+    font-size: 0.55rem;
+    letter-spacing: 0.02em;
+  }
+
+  .gallery__filter-btn--active {
+    color: #000000 !important;
+  }
+
+  .gallery__masonry {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .gallery__search input {
+    width: 100px;
+  }
+}

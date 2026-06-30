@@ -1,0 +1,157 @@
+/* ===========================================================
+   Event Card — Full Screen Modal
+=========================================================== */
+.event-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(2, 8, 24, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 24px;
+}
+
+.event-modal {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.event-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(2, 8, 24, 0.55);
+  color: #fff;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.event-modal__close:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+.event-modal__image-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.event-modal__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.event-modal__body {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Date — pill badge, matching the card */
+.event-modal__date {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  width: fit-content;
+}
+
+/* Title — display font + gold underline accent */
+.event-modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.event-modal__title::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 2px;
+  background: var(--gold);
+  margin-top: 10px;
+}
+
+/* Location — uppercase with gold dot bullet */
+.event-modal__location {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.event-modal__location::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Description — italic, narrative feel */
+.event-modal__desc {
+  margin-top: 18px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.event-modal__body .cta-btn {
+  margin-top: 28px;
+}
+
+/* Stack on mobile/tablet — image on top, content below */
+@media (max-width: 768px) {
+  .event-modal {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+  }
+
+  .event-modal__image-wrap {
+    min-height: 240px;
+  }
+
+  .event-modal__body {
+    padding: 28px;
+  }
+}

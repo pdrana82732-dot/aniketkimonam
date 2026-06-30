@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiChevronDown } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import FloatingParticles from './FloatingParticles.jsx'
 import './Hero.css'
 
@@ -186,9 +187,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.6, duration: 0.7 }}
         >
-          <a href="/celebrations" className="hero__cta-btn">
+          <Link to="/celebrations" className="hero__cta-btn">
             View Celebrations
-          </a>
+          </Link>
         </motion.div>
       </div>
 

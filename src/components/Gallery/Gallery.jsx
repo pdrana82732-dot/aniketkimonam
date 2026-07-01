@@ -17,6 +17,14 @@ const categoryLabels = {
   Wedding: '👰 Wedding 👰',
 }
 
+const categoryCorner = {
+  Tilak: '✿',
+  Haldi: '✦',
+  Puja: '🪔',
+  Mehendi: '❧',
+  Wedding: '♥',
+}
+
 export default function Gallery() {
   const [searchParams, setSearchParams] = useSearchParams()
   const categoryFromUrl = searchParams.get('category')
@@ -28,9 +36,6 @@ export default function Gallery() {
   const [fullScreen, setFullScreen] = useState(false)
   const sentinelRef = useRef(null)
 
-  // If someone arrives at /gallery?category=Wedding from elsewhere (e.g. the
-  // Orbit page's "Explore More" button) after this component is already
-  // mounted, sync the active filter to match.
   useEffect(() => {
     const c = searchParams.get('category')
     if (c && categories.includes(c) && c !== activeCategory) {
@@ -87,13 +92,12 @@ export default function Gallery() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Scroll wrapper keeps filters on one line on mobile */}
         <div className="gallery__filters-scroll">
           <div className="gallery__filters">
             {categories.map((c) => (
               <motion.button
                 key={c}
-                className={`gallery__filter-btn ${activeCategory === c ? 'gallery__filter-btn--active' : ''}`}
+                className={`gallery__filter-btn gallery__filter-btn--${c.toLowerCase()} ${activeCategory === c ? 'gallery__filter-btn--active' : ''}`}
                 onClick={() => setActiveCategory(c)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.88 }}
@@ -135,11 +139,12 @@ export default function Gallery() {
               <motion.button
                 key={photo.id}
                 className="gallery__item"
+                data-category={photo.category}
                 style={{ aspectRatio: `${photo.width} / ${photo.height}` }}
                 initial={{ opacity: 0, y: 24, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92 }}
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.5, delay: (idx % PAGE_SIZE) * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => openModal(idx)}
@@ -154,6 +159,12 @@ export default function Gallery() {
                   className="gallery__img"
                 />
 
+                {categoryCorner[photo.category] && (
+                  <span className="gallery__item-corner" aria-hidden="true">
+                    {categoryCorner[photo.category]}
+                  </span>
+                )}
+
                 <div className="gallery__item-overlay">
                   <span className="gallery__item-ritual">{photo.category}</span>
                   {photo.subtitle && (
@@ -164,7 +175,6 @@ export default function Gallery() {
                 <span className="gallery__item-badge">
                   {photo.subtitle ? photo.subtitle : photo.category}
                 </span>
-
               </motion.button>
             ))}
           </AnimatePresence>

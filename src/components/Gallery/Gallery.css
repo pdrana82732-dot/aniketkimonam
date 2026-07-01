@@ -1,3 +1,6 @@
+/* ============================================================
+   GALLERY — base layout
+   ============================================================ */
 .gallery {
   width: 100%;
 }
@@ -11,6 +14,9 @@
   padding: 90px 24px 40px;
 }
 
+/* ============================================================
+   CONTROLS BAR
+   ============================================================ */
 .gallery__controls {
   display: flex;
   align-items: center;
@@ -24,18 +30,15 @@
   overflow: hidden;
 }
 
-/* Scroll wrapper — allows single-line horizontal scroll on mobile */
 .gallery__filters-scroll {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .gallery__filters-scroll::-webkit-scrollbar {
   display: none;
-  /* Chrome/Safari */
 }
 
 .gallery__filters {
@@ -45,6 +48,7 @@
   width: max-content;
 }
 
+/* base filter button */
 .gallery__filter-btn {
   padding: 9px 20px;
   border-radius: 999px;
@@ -67,14 +71,48 @@
 .gallery__filter-btn--active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #000000 !important;
+  color: #000 !important;
   box-shadow: 0 6px 16px rgba(212, 175, 55, 0.3);
 }
 
 .gallery__filter-btn:active {
   transform: scale(0.92);
-  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* category-tinted active states */
+.gallery__filter-btn--tilak.gallery__filter-btn--active {
+  background: #c0392b;
+  border-color: #c0392b;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(192, 57, 43, 0.35);
+}
+
+.gallery__filter-btn--haldi.gallery__filter-btn--active {
+  background: #e6a817;
+  border-color: #e6a817;
+  color: #000 !important;
+  box-shadow: 0 6px 16px rgba(230, 168, 23, 0.35);
+}
+
+.gallery__filter-btn--puja.gallery__filter-btn--active {
+  background: #8e44ad;
+  border-color: #8e44ad;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(142, 68, 173, 0.35);
+}
+
+.gallery__filter-btn--mehendi.gallery__filter-btn--active {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(39, 174, 96, 0.35);
+}
+
+.gallery__filter-btn--wedding.gallery__filter-btn--active {
+  background: #d4af37;
+  border-color: #d4af37;
+  color: #000 !important;
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
 }
 
 .gallery__right-controls {
@@ -82,31 +120,6 @@
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
-}
-
-.gallery__search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--text-soft);
-  transition: border-color 0.3s var(--ease);
-}
-
-.gallery__search:hover,
-.gallery__search:focus-within {
-  border-color: var(--gold);
-}
-
-.gallery__search input {
-  border: none;
-  background: transparent;
-  color: var(--text);
-  font-size: 0.85rem;
-  outline: none;
-  width: 150px;
 }
 
 .gallery__fullscreen-btn {
@@ -125,9 +138,11 @@
 .gallery__fullscreen-btn:hover {
   border-color: var(--gold);
   color: var(--gold);
-  transform: rotate(8deg) scale(1.08);
 }
 
+/* ============================================================
+   MASONRY GRID
+   ============================================================ */
 .gallery__masonry {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -135,6 +150,9 @@
   gap: 16px;
 }
 
+/* ============================================================
+   BASE CARD
+   ============================================================ */
 .gallery__item {
   position: relative;
   width: 100%;
@@ -145,25 +163,52 @@
   display: block;
   padding: 0;
   box-shadow: 0 6px 20px rgba(2, 8, 24, 0.08);
-  transition: box-shadow 0.4s var(--ease);
+  transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+  /* base border — will be overridden per category */
+  border: 2px solid transparent;
 }
 
 .gallery__item:hover {
-  box-shadow: 0 18px 40px rgba(2, 8, 24, 0.18);
+  box-shadow: 0 18px 40px rgba(2, 8, 24, 0.22);
 }
 
 .gallery__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease);
+  display: block;
+  transition: transform 0.6s var(--ease), filter 0.4s var(--ease);
 }
 
 .gallery__item:hover .gallery__img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
-/* Overlay — z-index 2, fades in on hover */
+/* ============================================================
+   CORNER ORNAMENT
+   ============================================================ */
+.gallery__item-corner {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  z-index: 4;
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.6) rotate(-20deg);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+.gallery__item:hover .gallery__item-corner {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* ============================================================
+   OVERLAY (hover gradient + labels)
+   ============================================================ */
 .gallery__item-overlay {
   position: absolute;
   inset: 0;
@@ -183,7 +228,9 @@
   transform: translateY(0);
 }
 
-/* Badge — z-index 3, always visible above overlay */
+/* ============================================================
+   BADGE (top-left, always visible)
+   ============================================================ */
 .gallery__item-badge {
   position: absolute;
   top: 12px;
@@ -199,6 +246,7 @@
   padding: 5px 12px;
   border-radius: 999px;
   border: 1px solid rgba(212, 175, 55, 0.4);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .gallery__item-ritual {
@@ -217,12 +265,159 @@
   letter-spacing: 0.03em;
 }
 
-.gallery__item-caption {
-  color: var(--ivory);
-  font-size: 0.92rem;
-  font-weight: 500;
+/* ============================================================
+   PER-CATEGORY DECORATION
+   Each category gets:
+   - unique border colour + glow on hover
+   - unique badge accent
+   - unique overlay gradient tint
+   - unique img filter (subtle)
+   - unique corner colour
+   ============================================================ */
+
+/* ---- TILAK — deep red / crimson ---- */
+.gallery__item[data-category="Tilak"] {
+  border-color: rgba(192, 57, 43, 0.35);
 }
 
+.gallery__item[data-category="Tilak"]:hover {
+  border-color: rgba(192, 57, 43, 0.9);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.18), 0 18px 40px rgba(192, 57, 43, 0.25);
+}
+
+.gallery__item[data-category="Tilak"] .gallery__item-overlay {
+  background: linear-gradient(180deg, transparent 40%, rgba(100, 10, 10, 0.85) 100%);
+}
+
+.gallery__item[data-category="Tilak"] .gallery__item-badge {
+  color: #ff8a80;
+  border-color: rgba(192, 57, 43, 0.6);
+  background: rgba(80, 5, 5, 0.65);
+}
+
+.gallery__item[data-category="Tilak"] .gallery__item-corner {
+  color: #e74c3c;
+}
+
+.gallery__item[data-category="Tilak"]:hover .gallery__img {
+  filter: saturate(1.15) contrast(1.05);
+}
+
+/* ---- HALDI — golden yellow ---- */
+.gallery__item[data-category="Haldi"] {
+  border-color: rgba(230, 168, 23, 0.35);
+}
+
+.gallery__item[data-category="Haldi"]:hover {
+  border-color: rgba(230, 168, 23, 0.9);
+  box-shadow: 0 0 0 3px rgba(230, 168, 23, 0.18), 0 18px 40px rgba(230, 168, 23, 0.28);
+}
+
+.gallery__item[data-category="Haldi"] .gallery__item-overlay {
+  background: linear-gradient(180deg, transparent 40%, rgba(90, 60, 0, 0.85) 100%);
+}
+
+.gallery__item[data-category="Haldi"] .gallery__item-badge {
+  color: #ffe082;
+  border-color: rgba(230, 168, 23, 0.6);
+  background: rgba(70, 45, 0, 0.65);
+}
+
+.gallery__item[data-category="Haldi"] .gallery__item-corner {
+  color: #f1c40f;
+}
+
+.gallery__item[data-category="Haldi"]:hover .gallery__img {
+  filter: saturate(1.2) brightness(1.04);
+}
+
+/* ---- PUJA — deep purple / saffron ---- */
+.gallery__item[data-category="Puja"] {
+  border-color: rgba(142, 68, 173, 0.35);
+}
+
+.gallery__item[data-category="Puja"]:hover {
+  border-color: rgba(142, 68, 173, 0.9);
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.18), 0 18px 40px rgba(142, 68, 173, 0.28);
+}
+
+.gallery__item[data-category="Puja"] .gallery__item-overlay {
+  background: linear-gradient(180deg, transparent 40%, rgba(50, 10, 70, 0.88) 100%);
+}
+
+.gallery__item[data-category="Puja"] .gallery__item-badge {
+  color: #ce93d8;
+  border-color: rgba(142, 68, 173, 0.6);
+  background: rgba(40, 5, 60, 0.65);
+}
+
+.gallery__item[data-category="Puja"] .gallery__item-corner {
+  color: #af7ac5;
+}
+
+.gallery__item[data-category="Puja"]:hover .gallery__img {
+  filter: saturate(1.1) hue-rotate(5deg);
+}
+
+/* ---- MEHENDI — forest green ---- */
+.gallery__item[data-category="Mehendi"] {
+  border-color: rgba(39, 174, 96, 0.35);
+}
+
+.gallery__item[data-category="Mehendi"]:hover {
+  border-color: rgba(39, 174, 96, 0.9);
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.18), 0 18px 40px rgba(39, 174, 96, 0.25);
+}
+
+.gallery__item[data-category="Mehendi"] .gallery__item-overlay {
+  background: linear-gradient(180deg, transparent 40%, rgba(5, 50, 20, 0.88) 100%);
+}
+
+.gallery__item[data-category="Mehendi"] .gallery__item-badge {
+  color: #a5d6a7;
+  border-color: rgba(39, 174, 96, 0.6);
+  background: rgba(5, 40, 15, 0.65);
+}
+
+.gallery__item[data-category="Mehendi"] .gallery__item-corner {
+  color: #2ecc71;
+}
+
+.gallery__item[data-category="Mehendi"]:hover .gallery__img {
+  filter: saturate(1.15) brightness(1.03);
+}
+
+/* ---- WEDDING — gold / ivory ---- */
+.gallery__item[data-category="Wedding"] {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.gallery__item[data-category="Wedding"]:hover {
+  border-color: rgba(212, 175, 55, 0.9);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18), 0 18px 40px rgba(212, 175, 55, 0.28);
+}
+
+.gallery__item[data-category="Wedding"] .gallery__item-overlay {
+  background: linear-gradient(180deg, transparent 40%, rgba(30, 20, 5, 0.9) 100%);
+}
+
+.gallery__item[data-category="Wedding"] .gallery__item-badge {
+  color: #d4af37;
+  border-color: rgba(212, 175, 55, 0.7);
+  background: rgba(25, 16, 0, 0.65);
+}
+
+.gallery__item[data-category="Wedding"] .gallery__item-corner {
+  color: #f5c842;
+}
+
+.gallery__item[data-category="Wedding"]:hover .gallery__img {
+  filter: saturate(1.1) contrast(1.04) brightness(1.02);
+}
+
+/* ============================================================
+   MISC
+   ============================================================ */
 .gallery__sentinel {
   height: 10px;
 }
@@ -234,6 +429,9 @@
   font-style: italic;
 }
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 1024px) {
   .gallery__masonry {
     grid-template-columns: repeat(3, 1fr);
@@ -257,15 +455,11 @@
   }
 
   .gallery__filter-btn--active {
-    color: #000000 !important;
+    color: #000 !important;
   }
 
   .gallery__masonry {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-  }
-
-  .gallery__search input {
-    width: 100px;
   }
 }

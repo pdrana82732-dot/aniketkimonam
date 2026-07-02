@@ -1,0 +1,715 @@
+:root {
+  /* Royal wedding palette: deep royal purple, rich gold, ivory, ruby accent */
+  --void: #241542;
+  /* deep royal purple — main background */
+  --frame-bg: #34215c;
+  /* panel / card background, one step lighter */
+  --paper: #f8f2e4;
+  /* warm ivory — primary text on dark */
+  --safelight: #d4af37;
+  /* rich gold — the primary accent */
+  --ash: #b9a9d9;
+  /* muted lavender-grey — secondary text */
+  --ruby: #9b1c3f;
+  /* jewel-tone accent, used sparingly (seal, hover) */
+  --line: rgba(212, 175, 55, 0.24);
+  /* gold-tinted hairlines */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+  background: var(--void);
+  color: var(--paper);
+}
+
+.ws-root {
+  position: relative;
+  min-height: 100vh;
+}
+
+.ws-mono {
+  font-family: "Space Mono", monospace;
+}
+
+.ws-display {
+  font-family: "Fraunces", serif;
+}
+
+/* film grain overlay */
+.ws-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- nav ---------- */
+.ws-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px 20px 100px;
+  background: rgba(43, 10, 22, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ws-nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.ws-nav a {
+  color: var(--ash);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.ws-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--safelight);
+  transition: right 0.25s ease;
+}
+
+.ws-nav a:hover {
+  color: var(--paper);
+}
+
+.ws-nav a:hover::after {
+  right: 0;
+}
+
+.ws-nav-mark {
+  color: var(--paper);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+}
+
+.ws-nav-mark b {
+  color: var(--safelight);
+  font-weight: 400;
+}
+
+/* hamburger toggle — hidden on desktop */
+.ws-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ws-nav-toggle span {
+  display: block;
+  height: 1px;
+  background: var(--safelight);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.ws-nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.ws-nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.ws-nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.ws-nav-drawer {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .ws-nav-links {
+    display: none;
+  }
+
+  .ws-nav-toggle {
+    display: flex;
+  }
+
+  .ws-nav-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(72vw, 300px);
+    background: var(--frame-bg);
+    border-left: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 100px 32px 40px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 55;
+  }
+
+  .ws-nav-drawer.is-open {
+    transform: translateX(0);
+  }
+
+  .ws-nav-drawer a {
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* ---------- filmstrip rail (signature element) ---------- */
+.ws-rail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 72px;
+  z-index: 45;
+  background: #150c2b;
+  border-right: 1px solid var(--line);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.ws-rail::-webkit-scrollbar {
+  width: 0;
+}
+
+.ws-sprocket-row {
+  display: flex;
+  justify-content: space-between;
+  width: 44px;
+  margin-bottom: 6px;
+}
+
+.ws-sprocket {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--frame-bg);
+  border: 1px solid var(--line);
+}
+
+.ws-rail-frame {
+  width: 44px;
+  height: 58px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  filter: grayscale(1) brightness(0.65) contrast(1.1);
+  transition: filter 0.25s, transform 0.25s;
+}
+
+.ws-rail-frame:hover {
+  filter: grayscale(0) brightness(0.9);
+  transform: scale(1.04);
+}
+
+.ws-rail-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ws-rail-num {
+  position: absolute;
+  bottom: 2px;
+  right: 3px;
+  font-size: 0.5rem;
+  color: var(--safelight);
+  text-shadow: 0 0 2px #000;
+}
+
+@media (max-width: 820px) {
+  .ws-rail {
+    display: none;
+  }
+
+  .ws-nav {
+    padding-left: 28px;
+  }
+
+  .ws-main {
+    margin-left: 0 !important;
+  }
+}
+
+.ws-main {
+  margin-left: 72px;
+}
+
+/* ---------- hero ---------- */
+.ws-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 6vw 64px;
+  background: radial-gradient(circle at 30% 20%, #3d2470 0%, var(--void) 60%);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.ws-hero-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--safelight);
+  margin-bottom: 18px;
+}
+
+.ws-hero-names {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3.2rem, 10vw, 8rem);
+  line-height: 0.95;
+  color: var(--paper);
+  margin: 0;
+}
+
+.ws-hero-names span {
+  display: block;
+}
+
+.ws-hero-amp {
+  color: var(--safelight);
+  font-style: normal;
+  padding: 0 6px;
+}
+
+.ws-hero-meta {
+  margin-top: 30px;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--ash);
+  letter-spacing: 0.04em;
+}
+
+.ws-hero-stamp {
+  position: absolute;
+  top: 32px;
+  right: 6vw;
+  text-align: right;
+  font-size: 0.7rem;
+  color: var(--safelight);
+  letter-spacing: 0.1em;
+}
+
+/* ---------- wax-seal "Just Married" badge — the one signature flourish ---------- */
+.ws-seal {
+  position: absolute;
+  top: 118px;
+  right: calc(6vw + 4px);
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #b8264a 0%, var(--ruby) 60%, #7a1631 100%);
+  border: 2px solid var(--safelight);
+  box-shadow:
+    0 0 0 4px var(--void),
+    0 0 0 5px rgba(212, 175, 55, 0.5),
+    0 12px 26px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-9deg);
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  color: var(--paper);
+  text-align: center;
+  line-height: 1.15;
+}
+
+.ws-seal span {
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+}
+
+.ws-seal span:first-child {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--safelight);
+  margin-bottom: 2px;
+}
+
+@media (max-width: 640px) {
+  .ws-seal {
+    width: 84px;
+    height: 84px;
+    top: auto;
+    bottom: 24px;
+    right: 6vw;
+  }
+
+  .ws-seal span:first-child {
+    font-size: 0.56rem;
+  }
+
+  .ws-seal span:last-child {
+    font-size: 0.74rem;
+  }
+}
+
+/* ---------- section shell ---------- */
+.ws-section {
+  padding: 100px 6vw;
+  border-bottom: 1px solid var(--line);
+}
+
+.ws-section-tag {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--safelight);
+  position: absolute;
+  margin-top: 6px;
+}
+
+/* ---------- story ---------- */
+.ws-story {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0 40px;
+  max-width: 760px;
+}
+
+.ws-story-body {
+  font-size: 1.05rem;
+  color: #e3d9f2;
+  max-width: 620px;
+}
+
+.ws-story-body p+p {
+  margin-top: 16px;
+}
+
+.ws-story-body .ws-drop {
+  font-family: "Fraunces", serif;
+  font-size: 3.6rem;
+  float: left;
+  line-height: 0.8;
+  margin: 6px 8px 0 0;
+  color: var(--safelight);
+}
+
+/* ---------- gallery / contact sheet ---------- */
+.ws-sheet-head {
+  position: relative;
+  margin-bottom: 56px;
+}
+
+.ws-sheet-title {
+  font-family: "Fraunces", serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  margin-left: 40px;
+}
+
+.ws-sheet-sub {
+  margin-left: 40px;
+  margin-top: 10px;
+  color: var(--ash);
+  font-size: 0.9rem;
+  max-width: 520px;
+}
+
+.ws-contact-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.ws-cell {
+  background: var(--frame-bg);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.ws-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.ws-cell:hover img {
+  transform: scale(1.06);
+  filter: grayscale(0) contrast(1.1);
+}
+
+.ws-cell-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 0.65rem;
+  color: var(--safelight);
+  background: rgba(13, 11, 9, 0.7);
+  padding: 2px 6px;
+  letter-spacing: 0.05em;
+}
+
+.ws-cell-cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 10px 8px;
+  background: linear-gradient(180deg, transparent, rgba(13, 11, 9, 0.9));
+  font-size: 0.72rem;
+  color: var(--paper);
+  opacity: 0;
+  transition: opacity 0.3s;
+  letter-spacing: 0.03em;
+}
+
+.ws-cell:hover .ws-cell-cap {
+  opacity: 1;
+}
+
+/* ---------- lightbox ---------- */
+.ws-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(13, 11, 9, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6vw;
+}
+
+.ws-lightbox img {
+  max-width: 100%;
+  max-height: 78vh;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+}
+
+.ws-lb-cap {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--ash);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.ws-lb-cap b {
+  color: var(--safelight);
+}
+
+.ws-lb-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  color: var(--paper);
+  font-size: 1.6rem;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  padding: 16px;
+}
+
+.ws-lb-btn:hover {
+  opacity: 1;
+}
+
+.ws-lb-btn:focus-visible {
+  outline: 2px solid var(--safelight);
+}
+
+.ws-lb-close {
+  top: 20px;
+  right: 24px;
+  font-size: 1.3rem;
+}
+
+.ws-lb-prev {
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ws-lb-next {
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ---------- details ---------- */
+.ws-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 56px;
+}
+
+.ws-detail-card {
+  background: var(--void);
+  padding: 32px 26px;
+}
+
+.ws-detail-time {
+  font-family: "Space Mono", monospace;
+  color: var(--safelight);
+  font-size: 1.6rem;
+}
+
+.ws-detail-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: var(--ash);
+  margin: 10px 0 6px;
+}
+
+.ws-detail-meta {
+  font-size: 0.9rem;
+  color: #e3d9f2;
+}
+
+/* ---------- rsvp ---------- */
+.ws-rsvp {
+  max-width: 480px;
+  margin-top: 56px;
+}
+
+.ws-field {
+  margin-bottom: 20px;
+}
+
+.ws-field label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 8px;
+}
+
+.ws-field input,
+.ws-field select,
+.ws-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.88rem;
+  background: var(--frame-bg);
+  border: 1px solid var(--line);
+  color: var(--paper);
+}
+
+.ws-field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.ws-field input:focus,
+.ws-field select:focus,
+.ws-field textarea:focus {
+  outline: 2px solid var(--safelight);
+  outline-offset: 1px;
+}
+
+.ws-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--safelight);
+  border: none;
+  color: var(--void);
+  font-family: "Space Mono", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-weight: 700;
+}
+
+.ws-submit:hover {
+  opacity: 0.85;
+}
+
+.ws-rsvp-note {
+  font-size: 0.78rem;
+  color: var(--ash);
+  margin-top: 14px;
+}
+
+footer.ws-footer {
+  text-align: center;
+  padding: 56px 6vw 44px;
+  color: var(--ash);
+  font-size: 0.8rem;
+}
+
+footer.ws-footer .ws-display {
+  font-style: italic;
+  color: var(--safelight);
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 8px;
+}

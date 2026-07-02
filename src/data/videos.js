@@ -1,8 +1,3 @@
-// Wedding videos — hosted on Cloudinary, with Lighthouse-friendly delivery:
-// - thumbnail: small auto-cropped JPG/WebP poster frame, served before any video loads
-// - src: capped to 720p @ eco quality with dpr_auto, served as the lightest format the browser supports
-// - srcMobile: an even lighter 480p variant for small/slow connections
-
 const videos = [
   {
     id: 1,
@@ -347,6 +342,38 @@ const videos = [
     src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782878826/video_11_ur3pky.mp4',
     srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782878826/video_11_ur3pky.mp4',
     category: 'Wedding',
+  },
+  {
+    id: 44,
+    title: 'Tilak Ceremony 21',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782964528/video_17_p9lqjr.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782964528/video_17_p9lqjr.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782964528/video_17_p9lqjr.mp4',
+    category: 'Tilak',
+  },
+  {
+    id: 45,
+    title: 'Tilak Ceremony 22',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782964177/video_15_kdw7oa.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782964177/video_15_kdw7oa.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782964177/video_15_kdw7oa.mp4',
+    category: 'Tilak',
+  },
+  {
+    id: 46,
+    title: 'Tilak Ceremony 23',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782964177/video_16_spr4al.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782964177/video_16_spr4al.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782964177/video_16_spr4al.mp4',
+    category: 'Tilak',
+  },
+  {
+    id: 47,
+    title: 'Tilak Ceremony 24',
+    thumbnail: 'https://res.cloudinary.com/dwie7kkgv/video/upload/so_1,c_fill,w_500,h_650,g_auto,f_auto,q_auto:eco,dpr_auto/v1782964177/video_14_upghwy.jpg',
+    src: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_1280,h_720,c_limit,dpr_auto/v1782964177/video_14_upghwy.mp4',
+    srcMobile: 'https://res.cloudinary.com/dwie7kkgv/video/upload/f_auto,q_auto:eco,w_854,h_480,c_limit/v1782964177/video_14_upghwy.mp4',
+    category: 'Tilak',
   },
 ]
 
